@@ -246,10 +246,6 @@ class MyThread(Thread):
         winsound.Beep(frequency, duration)
 
 
-
-
- 
-
 """GET LOCARRAY INPUT"""
 locarray1 = np.empty([1,3])
 with open("obj_pose-laser-radar-synthetic-ukf-input1.txt","r") as f:
