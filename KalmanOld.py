@@ -10,9 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+
 locarray = np.empty([1,3])
 
-with open("obj_pose-laser-radar-synthetic-ukf-input.txt","r") as f:
+with open("obj_pose-laser-radar-synthetic-ukf-input1.txt","r") as f:
     for line in f:
         location = line.lower()
         location = location.replace("\n","")
@@ -22,6 +23,8 @@ with open("obj_pose-laser-radar-synthetic-ukf-input.txt","r") as f:
         locarray = np.append(locarray, [location], axis = 0)
 plt.plot(locarray[1:,0],locarray[1:,1])
 plt.title("Input")
+plt.xlabel('x (meters)')
+plt.ylabel('y (meters)')
 plt.show()
 
 """Initialize all of the matrices that we will use """
@@ -43,6 +46,9 @@ Q_ = np.array([[0.25*R_laser[0,0]*delta_t**4, 0, 0.5*R_laser[0,0]*delta_t**3,0],
 
 noise_ax = 9
 noise_ay = 9
+
+
+
 
 """ Start the code for the FIlter """
 x_ = np.array([0, 0, 1, 1])
@@ -66,6 +72,8 @@ with open("results.txt", "w+") as f:
         results = np.append(results, [x_[0:2]], axis = 0)
 plt.plot(results[:,0], results[:,1])
 plt.title("Results")
+plt.xlabel('x (meters)')
+plt.ylabel('y (meters)')
         
 
 

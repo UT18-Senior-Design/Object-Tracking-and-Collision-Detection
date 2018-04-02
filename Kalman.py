@@ -51,6 +51,9 @@ class Kalman:
             self.results = np.append(self.results, [self.x_[0:2]], axis = 0)    
         plt.plot(self.results[:,0], self.results[:,1])
         plt.title("Results")
+        plt.xlabel('x (meters)')
+        plt.ylabel('y (meters)')
+        plt.legend(['Object 1', 'Object 2'])
         
 
 
@@ -73,8 +76,10 @@ with open("obj_pose-laser-radar-synthetic-ukf-input1.txt","r") as f:
            location[n] = float(location[n])
         locarray1 = np.append(locarray1, [location], axis = 0)
 plt.plot(locarray1[1:,0],locarray1[1:,1])
-plt.title("Input")
-plt.show()
+plt.xlabel('x (meters)')
+plt.ylabel('y (meters)')
+#plt.title("Input")
+#plt.show()
 
 locarray2 = np.empty([1,3])
 with open("obj_pose-laser-radar-synthetic-ukf-input2.txt","r") as f:
@@ -87,6 +92,7 @@ with open("obj_pose-laser-radar-synthetic-ukf-input2.txt","r") as f:
         locarray2 = np.append(locarray2, [location], axis = 0)
 plt.plot(locarray2[1:,0],locarray2[1:,1])
 plt.title("Input")
+plt.legend(['Object 1', 'Object 2'])
 plt.show()
 
 

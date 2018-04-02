@@ -12,8 +12,9 @@ import matplotlib.pyplot as plt
 from descartes import PolygonPatch
 import math, random
 import winsound
+import time
 
-from Kalman.py import Kalman
+#from Kalman.py import Kalman
 
 delta_t = 3.0
 
@@ -184,38 +185,48 @@ def collision_detection(car, obj):
 
 
 ## the "MAIN"
+now = time.time()
+
 my_car = Car(0,0,car_dim["width"],car_dim["length"],0)
 #other_car = Car(fake_obj["x"],fake_obj["y"],fake_obj["width"],fake_obj["length"],fake_obj["angle"])
 other_car = Car(0,0,fake_obj["width"],fake_obj["length"],0)
+other_car2 = Car(0,0,fake_obj["width"],fake_obj["length"],0)
 
 
-fig = plt.figure(1, figsize=(15, 8))
-ax = fig.add_subplot(121)
-ax.set_xlim(-40, 40)
-ax.set_ylim(-40, 40)  
+#fig = plt.figure(1, figsize=(25, 8))
+#ax = fig.add_subplot(121)
+#ax.set_xlim(-40, 40)
+#ax.set_ylim(-40, 40)  
 
 my_car.update_speed()
 other_car.update_object()
+other_car2.update_object()
 
-ax.add_patch(PolygonPatch(my_car.get_contour(), fc='#990000', alpha=1))
-ax.add_patch(PolygonPatch(my_car.get_path(), fc='#990000', alpha=.5))
-ax.add_patch(PolygonPatch(other_car.get_contour(), fc='#000099', alpha=1))
-ax.add_patch(PolygonPatch(other_car.get_path(), fc='#000099', alpha=.5))
+#ax.add_patch(PolygonPatch(my_car.get_contour(), fc='#990000', alpha=1))
+#ax.add_patch(PolygonPatch(my_car.get_path(), fc='#990000', alpha=.5))
+#ax.add_patch(PolygonPatch(other_car.get_contour(), fc='#000099', alpha=1))
+#ax.add_patch(PolygonPatch(other_car.get_path(), fc='#000099', alpha=.5))
 #ax.add_patch(PolygonPatch(my_car.intersection_future(obj), fc='#009900', alpha=1))
 
 
 if(collision_detection(my_car,other_car)):
-    print ("***CRASH DETECTED***")
-    frequency = 600 # Set Frequency To 2500 Hertz
-    duration = 750  # Set Duration To 1000 ms == 1 second
-    winsound.Beep(frequency, duration)
-    winsound.Beep(frequency, duration)
-else:
-    print ("")
-  
+    print ("***COLLISION DETECTED***")
+    #frequency = 600 # Set Frequency To 2500 Hertz
+    #duration = 750  # Set Duration To 1000 ms == 1 second
+    #winsound.Beep(frequency, duration)
+    #winsound.Beep(frequency, duration)
+if(collision_detection(my_car,other_car2)):
+    print ("***COLLISION DETECTED***")
+    #frequency = 600 # Set Frequency To 2500 Hertz
+    #duration = 750  # Set Duration To 1000 ms == 1 second
+    #winsound.Beep(frequency, duration)
+    #winsound.Beep(frequency, duration)
 
+  
+then = time.time()
+print (then-now)
                                      
-plt.show()
+#plt.show()
 
 
 
